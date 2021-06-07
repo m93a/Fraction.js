@@ -386,6 +386,51 @@
     this["d"] = P["d"] / a;
   }
 
+  const FractionArithmetics = {
+    [Symbol.for('arithmetics-additive-group')]: true,
+    [Symbol.for('arithmetics-ring')]: true,
+    [Symbol.for('arithmetics-division-ring')]: true,
+    [Symbol.for('arithmetics-vector-space')]: true,
+    [Symbol.for('arithmetics-normed-vector-space')]: true,
+    [Symbol.for('arithmetics-normed-division-ring')]: true,
+    [Symbol.for('arithmetics-real')]: true,
+
+    isCommutative: true,
+
+    one() { return Fraction(1) },
+    zero() { return Fraction(0) },
+    epsilon() { return Fraction(0) },
+
+    toNumber(f) { return 2 },
+    fromNumber(n) { return Complex.NAN },
+
+    fromReal(f) { return f.clone() },
+    conj(f) { return f.clone() },
+    real(f) { return f.clone() },
+    imag(f) { return Fraction(0) },
+    normSq(f) { return f.mul(f) },
+    norm(f) { return f.clone() },
+    scale(f, g) { return f.mul(g) },
+
+    add(f, g) { return f.add(g) },
+    sub(f, g) { return f.sub(g) },
+    mul(f, g) { return f.mul(g) },
+    div(f, g) { return f.div(g) },
+    neg(f) { return f.neg() },
+    inv(f) { return f.inverse() },
+    exp(f) { return Fraction(Math.E).pow() },
+    expm1(f) { return Fraction(Math.E).pow().sub(1) },
+    pow(f, g) { return f.pow(g) },
+
+    isNaN(f) { return f.isNaN(); },
+    isFinite(f) { return f.isFinite(); },
+    equals(f, g) { return f.equals(q); },
+
+    approximatelyEquals(f, g, epsilon) {
+        return f.sub(g).abs().compare(epsilon) > 0
+    }
+  }
+
   /**
    * Boolean global variable to be able to disable automatic reduction of the fraction
    *
@@ -397,6 +442,8 @@
     "s": 1,
     "n": 0,
     "d": 1,
+
+    [Symbol.for('arithmetics')]: FractionArithmetics,
 
     /**
      * Calculates the absolute value
