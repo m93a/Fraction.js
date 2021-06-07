@@ -409,7 +409,7 @@
     real(f) { return f.clone() },
     imag(f) { return Fraction(0) },
     normSq(f) { return f.mul(f) },
-    norm(f) { return f.clone() },
+    norm(f) { return f.abs() },
     scale(f, g) { return f.mul(g) },
 
     add(f, g) { return f.add(g) },
