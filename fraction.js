@@ -426,14 +426,14 @@
     inv(f) { return f.inverse() },
 
     pow(f, g) { return f.pow(g) },
-    exp(f) { return Fraction(Math.E).pow() },
-    expm1(f) { return Fraction(Math.E).pow().sub(1) },
+    exp(f) { return Fraction(Math.E).pow(f) },
+    expm1(f) { return Fraction(Math.E).pow(f).sub(1) },
     log(f) { return Fraction(Math.log(f.valueOf())) },
     log1p(f) { return Fraction(Math.log(f.add(1).valueOf())) },
 
     isNaN(f) { return f.isNaN(); },
     isFinite(f) { return f.isFinite(); },
-    equals(f, g) { return f.equals(q); },
+    equals(f, g) { return f.equals(g); },
 
     approximatelyEquals(f, g, epsilon) {
         return f.sub(g).abs().compare(epsilon) > 0
