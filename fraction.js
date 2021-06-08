@@ -405,7 +405,7 @@
     fromNumber(n) {
       const f = Fraction(n)
       if (f.valueOf() !== n) {
-        throw new TypeError(`Cannot implicitly convert a number to a Fraction when there will be a loss of precision (value: ${x}).`)
+        throw new TypeError(`Cannot implicitly convert a number to a Fraction when there will be a loss of precision (value: ${n}).`)
       }
       return f
     },
