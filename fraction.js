@@ -401,8 +401,14 @@
     zero() { return Fraction(0) },
     epsilon() { return Fraction(0) },
 
-    toNumber(f) { return +f },
-    fromNumber(n) { return Fraction(n) },
+    toNumber(f) { return f.valueOf },
+    fromNumber(n) {
+      const f = Fraction(n)
+      if (f.valueOf() !== n) {
+        throw new TypeError(`Cannot implicitly convert a number to a Fraction when there will be a loss of precision (value: ${x}).`)
+      }
+      return f
+    },
 
     fromReal(f) { return f.clone() },
     conj(f) { return f.clone() },
@@ -422,8 +428,8 @@
     pow(f, g) { return f.pow(g) },
     exp(f) { return Fraction(Math.E).pow() },
     expm1(f) { return Fraction(Math.E).pow().sub(1) },
-    log(f) { return Fraction(Math.log(+f)) },
-    log1p(f) { return Fraction(Math.log(+f.add(1))) },
+    log(f) { return Fraction(Math.log(f.valueOf())) },
+    log1p(f) { return Fraction(Math.log(f.add(1).valueOf())) },
 
     isNaN(f) { return f.isNaN(); },
     isFinite(f) { return f.isFinite(); },
