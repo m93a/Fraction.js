@@ -401,7 +401,7 @@
     zero() { return Fraction(0) },
     epsilon() { return Fraction(0) },
 
-    toNumber(f) { return f.valueOf },
+    toNumber(f) { return f.valueOf() },
     fromNumber(n) {
       const f = Fraction(n)
       if (f.valueOf() !== n) {
