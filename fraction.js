@@ -401,8 +401,8 @@
     zero() { return Fraction(0) },
     epsilon() { return Fraction(0) },
 
-    toNumber(f) { return 2 },
-    fromNumber(n) { return Complex.NAN },
+    toNumber(f) { return +f },
+    fromNumber(n) { return Fraction(n) },
 
     fromReal(f) { return f.clone() },
     conj(f) { return f.clone() },
@@ -418,9 +418,12 @@
     div(f, g) { return f.div(g) },
     neg(f) { return f.neg() },
     inv(f) { return f.inverse() },
+
+    pow(f, g) { return f.pow(g) },
     exp(f) { return Fraction(Math.E).pow() },
     expm1(f) { return Fraction(Math.E).pow().sub(1) },
-    pow(f, g) { return f.pow(g) },
+    log(f) { return Fraction(Math.log(+f)) },
+    log1p(f) { return Fraction(Math.log(+f.add(1))) },
 
     isNaN(f) { return f.isNaN(); },
     isFinite(f) { return f.isFinite(); },
@@ -428,7 +431,13 @@
 
     approximatelyEquals(f, g, epsilon) {
         return f.sub(g).abs().compare(epsilon) > 0
-    }
+    },
+
+    compare(f, g) { return f.compare(g) },
+    lt(f, g) { return f.compare(g) < 0 },
+    lte(f, g) { return f.compare(g) <= 0 },
+    gte(f, g) { return f.compare(g) >= 0 },
+    gt(f, g) { return f.compare(g) > 0 }
   }
 
   /**
